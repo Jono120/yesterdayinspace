@@ -1,7 +1,76 @@
-﻿@page
-@model CastCrewModel
+@page
+@model yesterdayinspace.Pages.CCEntities.CastCrewModel
 @{
     ViewData["Title"] = "Cast & Crew";
 }
 
-<h2>@ViewData["Title"]</h2>
+<div id="YIS-BioPane">
+    <div class="yis-close" onclick="$('#YIS-BioPane').fadeOut()"></div>
+    <div class="yis-bioimg">
+        <div class="yis-profile">
+            <img id="YIS-BioFullImg" src="" />
+        </div>
+        <div class="yis-name" id="YIS-BioName"></div>
+    </div>
+    <div id="YIS-BioInfo">
+		<div id="YIS-BioInfoText"></div>
+		<h3>Follow Them:</h3>
+		<ul id="YIS-BioInfoSocial"></ul>
+	</div>
+</div>
+
+<h1>@ViewData["Title"]</h1>
+
+<h2 class="yis-cchead">Devised &amp; Performed By</h2>
+<section class="yis-circlesect yis-cast">
+    <ul>
+    @foreach (var item in Model.CCEntity)
+    {
+        if (item.Type == "cast")
+        {
+        <li data-id="@Html.DisplayFor(modelItem => item.ID)">
+            <div class="yis-profile">
+                <img src="@(Html.DisplayFor(modelItem => item.ThumbImg))" />
+            </div>
+            <div class="yis-name"><b>@Html.Raw(item.Name)</b><br />@Html.DisplayFor(modelItem => item.Role)</div>
+        </li>
+        }
+    }
+    </ul>
+</section>
+
+<h2 class="yis-cchead">With Support From</h2>
+<section class="yis-circlesect yis-crew">
+    <ul>
+        @foreach (var item in Model.CCEntity)
+    {
+        if (item.Type == "crew")
+        {
+            <li data-id="@Html.DisplayFor(modelItem => item.ID)">
+                <div class="yis-profile">
+                    <img src="@(Html.DisplayFor(modelItem => item.ThumbImg))" />
+                </div>
+                <div class="yis-name"><b>@Html.Raw(item.Name)</b></div>
+            </li>
+    }
+}
+    </ul>
+</section>
+
+<h2 class="yis-cchead">And Assistance From</h2>
+<section class="yis-circlesect yis-sponsors">
+    <ul>
+        @foreach (var item in Model.CCEntity)
+    {
+        if (item.Type == "sponsor")
+        {
+        <li data-id="@Html.DisplayFor(modelItem => item.ID)">
+            <div class="yis-profile">
+                <img src="@(Html.DisplayFor(modelItem => item.ThumbImg))" />
+            </div>
+            <div class="yis-name"><b>@Html.Raw(item.Name)</b></div>
+        </li>
+    }
+}
+    </ul>
+</section>

@@ -1,7 +1,12 @@
-﻿@page
+@page
 @model GalleryModel
 @{
     ViewData["Title"] = "Gallery";
+    ViewData["OnLoad"] = "getGallery(remote)";
 }
 
-<h2>@ViewData["Title"]</h2>
+<h1>@ViewData["Title"]</h1>
+<div id="GPImages" class="gpSection"></div>
+<div id="GPReviews" class="gpSection" style="display: none;"></div>
+<div id="GPProducts" class="gpSection" style="display: none;"></div>
+<div id="GPVideos" class="gpSection"></div>

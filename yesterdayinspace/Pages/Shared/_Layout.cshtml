@@ -1,22 +1,62 @@
-﻿<!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en-nz">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Yesterday In Space @*- @ViewData["Title"]*@</title>
-
+    <title>Yesterday, In Space - @ViewData["Title"]</title>
+    <meta property="og:title" content="@ViewData["Title"]" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://raw.githubusercontent.com/SPLITelevisionProductions/yesterdayinspace/master/yesterdayinspace/wwwroot/images/og_thumbnail.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="627" />
+    <meta property="og:description" content="Come aboard and join the crew of Yesterday for a journey... in space! Witness the comedy, drama, and relationships of Sci-Fi meeting Soap Opera in this brand-new interactive stage show! Featuring original music and songs from the members of SPLITelevision Productions, this show is taking off!" />
+    <link rel="manifest" href="/lib/manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="YIS">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, user-scalable=no, viewport-fit=cover">
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/webapp/icon-57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/webapp/icon-72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/webapp/icon-76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/webapp/icon-114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/webapp/icon-120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/webapp/icon-144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/webapp/icon-152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/images/webapp/icon-167.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/webapp/icon-180.png">
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.css" />
     </environment>
 </head>
-<body>
+<body class='@ViewData["Class"]' onload='@ViewData["OnLoad"]'>
+	<header class="yis-header">
+		<a asp-page="/Index" class="yis-logo" title="Yesterday, In Space"></a>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+        	<div class="container">
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a asp-page="/About">About</a></li>
+                        <li><a asp-page="/Characters">Characters</a></li>
+                        <li><a asp-page="/CastCrew">Cast &amp; Crew</a></li>
+                        <li><a asp-page="/Gallery">Gallery</a></li>
+                    </ul>
+                    <div class="yis-social yis-gm" title="Email Yesterday, In Space"><a href="mailto:yesterdayinspace@gmail.com"></a></div>
+                    <div class="yis-social yis-yt" title="Yesterday, In Space on YouTube"><a href="http://goo.gl/hhLErK"></a></div>
+                    <div class="yis-social yis-ig" title="Yesterday, In Space on Instagram"><a href="http://www.instagram.com/yesterdayinspace"></a></div>
+                    <div class="yis-social yis-fb" title="Yesterday, In Space on Facebook"><a href="http://fb.me/yesterdayinspace"></a></div>
+                </div>
+        	</div>
+    	</nav>
+	</header>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -28,52 +68,58 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-page="/Index" class="navbar-brand">Yesterday In Space</a>
+                <a asp-page="/Index" class="navbar-brand"></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-page="/Index">Home</a></li>
                     <li><a asp-page="/About">About</a></li>
                     <li><a asp-page="/Characters">Characters</a></li>
                     <li><a asp-page="/CastCrew">Cast &amp; Crew</a></li>
                     <li><a asp-page="/Gallery">Gallery</a></li>
                 </ul>
+                <div class="yis-social yis-gm" title="Email Yesterday, In Space"><a href="mailto:yesterdayinspace@gmail.com"></a></div>
+                <div class="yis-social yis-yt" title="Yesterday, In Space on YouTube"><a href="http://goo.gl/hhLErK"></a></div>
+                <div class="yis-social yis-ig" title="Yesterday, In Space on Instagram"><a href="http://www.instagram.com/yesterdayinspace"></a></div>
+                <div class="yis-social yis-fb" title="Yesterday, In Space on Facebook"><a href="http://fb.me/yesterdayinspace"></a></div>
             </div>
         </div>
     </nav>
-
     <partial name="_CookieConsentPartial" />
-
+	<div id="YISHome-BG"></div>
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>Yesterday in Space&trade; &copy; - @DateTime.Now.Year</p>
-            <a asp-page="/Privacy">Privacy Policy</a>
-        </footer>
     </div>
-
+	<footer>
+		<div class="footer-logo dw" id="YISFoot-SPLIT" onclick="window.location.assign('https://www.facebook.com/SPLITelevision/')" title="SPLITelevision Productions"></div>
+		<div class="footer-logo dw" id="YISFoot-FatG" onclick="window.location.assign('https://fatg.org.nz/')" title="Fringe at the Gryphon"></div>
+		<div class="footer-logo" id="YISFoot-Menag" onclick="window.location.assign('https://themenagerie.co.nz/')" title="The Menagerie Variety Show"></div>
+		<div class="footer-logo dw" id="YISFoot-CNZ" onclick="window.location.assign('http://www.creativenz.govt.nz/')" title="Creative NZ"></div>
+		<div class="footer-logo" id="YISFoot-Tempst" onclick="window.location.assign('https://www.facebook.com/tempestwellington/')" title="Tempest Theatre Co"></div>
+		<div class="footer-logo dw" id="YISFoot-Gryph" onclick="window.location.assign('http://gryphon.stagecraft.co.nz/')" title="Gryphon Theatre"></div>
+		<div class="footer-logo dw" id="YISFoot-Fringe" onclick="window.location.assign('https://fringe.co.nz/')" title="Fringe"></div>
+		<p>&copy; @DateTime.Now.Year SPLITelevision Productions</p>
+	</footer>
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.js"></script>
     </environment>
     <environment exclude="Development">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
                 asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
                 asp-fallback-test="window.jQuery"
                 crossorigin="anonymous"
-                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
-        </script>
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"></script>
         <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
                 asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
                 asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
                 crossorigin="anonymous"
-                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-        </script>
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"></script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.js"></script>
     </environment>
-
     @RenderSection("Scripts", required: false)
 </body>
 </html>

@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using yesterdayinspace.Models;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace yesterdayinspace
 {
@@ -31,6 +34,8 @@ namespace yesterdayinspace
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddDbContext<YISContext>(options =>
+                options.UseSqlite(Configuration.GetConnectionString("CContext")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -50,7 +55,6 @@ namespace yesterdayinspace
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
 
             app.UseMvc();
         }

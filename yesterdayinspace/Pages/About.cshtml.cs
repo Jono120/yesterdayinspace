@@ -1,18 +1,33 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using yesterdayinspace.Models;
 
-namespace yesterdayinspace.Pages
+namespace yesterdayinspace.Pages.APContents
 {
-    public class AboutModel : PageModel
+    public class APContentsModel : PageModel
     {
-        public string Message { get; set; }
+        private readonly yesterdayinspace.Models.YISContext _context;
 
-        public void OnGet()
+        public APContentsModel(yesterdayinspace.Models.YISContext context)
         {
-            Message = "Your application description page.";
+            _context = context;
+        }
+
+        public IList<APContent> APContent { get; set; }
+
+        public async Task OnGetAsync()
+        {
+            IQueryable<APContent> APage = from s in _context.APContent
+                                            select s;
+
+            APage = APage.OrderBy(s => s.ID);
+
+            APContent = await APage.AsNoTracking().ToListAsync();
         }
     }
 }

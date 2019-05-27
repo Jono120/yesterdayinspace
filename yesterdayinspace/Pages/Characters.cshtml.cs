@@ -2,17 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using yesterdayinspace.Models;
 
-namespace yesterdayinspace.Pages
+namespace yesterdayinspace.Pages.CCEntities
 {
-    public class ContactModel : PageModel
+    public class CharactersModel : PageModel
     {
-        public string Message { get; set; }
+        private readonly yesterdayinspace.Models.YISContext _context;
 
-        public void OnGet()
+        public CharactersModel(yesterdayinspace.Models.YISContext context)
         {
-            Message = "Your contact page.";
+            _context = context;
+        }
+
+        public IList<CCEntity> CCEntity { get; set; }
+
+        public async Task OnGetAsync()
+        {
+            IQueryable<CCEntity> Entity = from s in _context.CCEntity
+                                            select s;
+
+            Entity = Entity.OrderBy(s => s.Name);
+
+            CCEntity = await Entity.AsNoTracking().ToListAsync();
         }
     }
 }

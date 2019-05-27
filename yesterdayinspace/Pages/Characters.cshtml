@@ -1,9 +1,27 @@
-﻿@page
-@model ContactModel
+@page
+@model yesterdayinspace.Pages.CCEntities.CharactersModel
 @{
     ViewData["Title"] = "Characters";
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@Model.Message</h3>
 
+<h1>@ViewData["Title"]</h1>
 
+<section class="yis-charsect">
+    <ul>
+    @foreach (var item in Model.CCEntity)
+    {
+        if (item.Type == "char")
+        {
+        <li data-id="@Html.DisplayFor(modelItem => item.ID)">
+            <div class="yis-profile">
+                <img src="@(Html.DisplayFor(modelItem => item.ThumbImg))" />
+            </div>
+			<div class="yis-charbio">
+				<div class="yis-name"><b>@Html.Raw(item.Name)</b> <span>@Html.Raw(item.Role)</span></div>
+            	<div class="yis-bio">@Html.Raw(item.BioText)</div>
+			</div>
+        </li>
+        }
+    }
+    </ul>
+</section>
